@@ -46,3 +46,30 @@ for eng, spa_list in eng2spa.items():
 from transformers import pipeline
 translator = pipeline("translation", model='Helsinki-NLP/opus-mt-en-es', device=0)
 
+translator("I like eggs and ham")
+
+eng_phrases = list(eng2spa.keys())
+len(eng_phrases)
+
+eng_phrases_subset = eng_phrases[20_000:21_000]
+
+# 27 min for 10k phrases on GPU
+translations = translator(eng_phrases_subset)
+
+translations[0]
+
+# Compute the blue score for each transaction we got back
+scores = []
+for eng, pred in zip(eng_phrases_subset, translations):
+  matches = eng2spa_tokens[eng]
+
+  # tokenize translation
+  spa_pred = tokenizer.tokenize(pred['translation_text'].lower())
+
+  score = sentence_bleu(matches, spa_pred)
+  scores.append(score)
+
+
+
+
+
