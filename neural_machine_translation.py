@@ -76,6 +76,23 @@ plt.hist(scores, bins=50);
 import numpy as np
 np.mean(scores)
 
+np.random.seed(1)
+
+def print_random_translation():
+  i = np.random.choice(len(eng_phrases_subset))
+  eng = eng_phrases_subset[i]
+  print("EN:", eng)
+
+  translation = translations[i]['translation_text']
+  print('ES Translation: ', translation)
+
+  matches = eng2spa[eng]
+  print('Matches:', matches)
+
+  print_random_translation()
+
+  print_random_translation()
+
 
 
 
