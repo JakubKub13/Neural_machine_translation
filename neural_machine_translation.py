@@ -69,6 +69,14 @@ for eng, pred in zip(eng_phrases_subset, translations):
   score = sentence_bleu(matches, spa_pred)
   scores.append(score)
 
+  # Plot hitogram of our scores
+import matplotlib.pyplot as plt
+plt.hist(scores, bins=50);
+
+import numpy as np
+np.mean(scores)
+
+
 
 
 
