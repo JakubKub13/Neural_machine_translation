@@ -12,3 +12,15 @@ for line in open('spa-eng/spa.txt'):
   if eng not in eng2spa:
     eng2spa[eng] = []
   eng2spa[eng].append(spa)
+
+eng2spa
+
+from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
+from nltk.tokenize import RegexpTokenizer
+tokenizer = RegexpTokenizer(r'\w')
+
+tokens = tokenizer.tokenize('¿Qué me cuentas?'.lower())
+sentence_bleu([tokens], tokens)
+
+sentence_bleu([['hi']], ['hi'])
+
